@@ -10,9 +10,12 @@
 
     <properties>
         <scala.maven.version>2.11.8</scala.maven.version>
+        <shc.version>1.1.3-2.2-s_2.11</shc.version>
+        <hbase.version>1.1.2</hbase.version>
     </properties>
 
     <dependencies>
+        <!-- Spark -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.11</artifactId>
@@ -28,6 +31,25 @@
             <artifactId>scalatest_2.11</artifactId>
             <version>3.0.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Spark HBase Connector -->
+        <dependency>
+            <groupId>com.hortonworks</groupId>
+            <artifactId>shc-core</artifactId>
+            <version>${shc.version}</version>
+        </dependency>
+
+        <!-- HBase -->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>${hbase.version}</version>
         </dependency>
 
     </dependencies>

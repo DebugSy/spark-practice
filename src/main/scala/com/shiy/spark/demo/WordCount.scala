@@ -1,7 +1,5 @@
-import java.util
-import java.util.{Arrays, List}
+package com.shiy.spark.demo
 
-import org.apache.spark.api.java.{JavaPairRDD, JavaRDD}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
