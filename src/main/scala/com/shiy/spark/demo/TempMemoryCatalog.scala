@@ -38,5 +38,4 @@ class TempMemoryCatalog(conf: SparkConf) extends InMemoryCatalog(conf) {
 
   override def tableExists(db: String, table: String): Boolean = false
 
-  protected override def doCreateDatabase(dbDefinition: CatalogDatabase, ignoreIfExists: Boolean): Unit = super.doCreateDatabase(dbDefinition, ignoreIfExists)
 }
