@@ -217,7 +217,7 @@
     
     <property>
       <name>hbase.zookeeper.quorum</name>
-      <value>info1,info3,info2</value>
+      <value>info3,info2,info1</value>
     </property>
     
     <property>

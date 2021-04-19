@@ -1,6 +1,7 @@
 package com.shiy.spark;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.sql.Dataset;
@@ -24,6 +25,7 @@ public class WordCount {
 		JavaRDD<String> lines = sparkSession.read().textFile("E:/tmp/data.txt").toJavaRDD();
 
 		JavaRDD<String> words = lines.flatMap(s -> Arrays.asList(SPACE.split(s)).iterator());
+
 
 //		words.mapToPair()
 

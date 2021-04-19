@@ -47,7 +47,7 @@ object SqlSourceTest {
     catalog.createTempView("shiy_student_dataset2", data.queryExecution.logical, false)
     val analyzer = new Analyzer(catalog, conf)
     val plan = analyzer.execute(logicalPlan)
-    println(plan.verboseString)
+//    println(plan.verboseString)
     analyzer.checkAnalysis(plan)
     sc.stop()
   }

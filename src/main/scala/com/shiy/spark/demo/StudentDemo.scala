@@ -7,17 +7,14 @@ object StudentDemo {
 
   def main(args: Array[String]): Unit = {
 
+//    val sparkConf = new SparkConf().set("spark.testing.memory","2147480000")
     val sc = SparkSession.builder().master("local").appName("student demo").getOrCreate()
 
-    val student: DataFrame = sc.sqlContext.read.json("D:/tmp/data/spark/maxiaoli_test/student.json")
-    val score: DataFrame = sc.sqlContext.read.json("D:/tmp/data/spark/maxiaoli_test/score.json")
+    val student: DataFrame = sc.sqlContext.read.option("header", "true").csv("/tmp/data/spark/students.txt")
 
     student.printSchema()
-    score.printSchema()
 
-    val result = score.join(student, score("name") === student("name"))
-
-    result.collect().map(println(_))
+    student.selectExpr("case when ")
 
 
   }

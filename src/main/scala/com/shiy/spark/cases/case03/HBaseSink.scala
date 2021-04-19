@@ -1,4 +1,4 @@
-package com.shiy.spark.cases
+package com.shiy.spark.cases.case03
 
 import java.sql.{Date, Timestamp}
 
@@ -10,7 +10,7 @@ import org.apache.spark.sql.types._
  * Created by DebugSy on 2019/5/14.
  * 验证往HBase写入null
  */
-object HBaseSinkNull {
+object HBaseSink {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder()
       .appName("HBase Sink Null")
@@ -42,19 +42,6 @@ object HBaseSinkNull {
 
     val dataFrame = spark.createDataFrame(df.rdd, schema)
 
-    val convertedDF = dataFrame.selectExpr(
-      "int_col",
-      "string_col",
-      "boolean_col",
-      "byte_col",
-      "cast(timestamp_col as bigint) as timestamp_col",
-      "cast(date_col as bigint) as date_col",
-      "cast(decimal_col as double) as decimal_col",
-      "double_col",
-      "float_col",
-      "long_col",
-      "short_col")
-
     val catalog =
       s"""{
          |"table":{"namespace":"default", "name":"shiy_spark_write_table"},
@@ -73,6 +60,19 @@ object HBaseSinkNull {
            |"short_col":{"cf":"cf1", "col":"short_col", "type":"smallint"}
            |}
          |}""".stripMargin
+
+    val convertedDF = dataFrame.selectExpr(
+      "int_col",
+      "string_col",
+      "boolean_col",
+      "byte_col",
+      "cast(timestamp_col as bigint) as timestamp_col",
+      "cast(cast(date_col as timestamp) as bigint) as date_col",
+      "cast(decimal_col as double) as decimal_col",
+      "double_col",
+      "float_col",
+      "long_col",
+      "short_col")
 
     convertedDF.show(10)
 
