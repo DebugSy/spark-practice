@@ -37,7 +37,7 @@ object SqlExecutionPlan {
     //导入隐式转换
     import spark.implicits._
 
-    val student = spark.read.csv("src/main/resources/sql/students.txt")
+    val student = spark.read.csv("src/main/resources/sql/students.txt", "")
     val course = spark.read.csv("src/main/resources/sql/course.txt")
     val sc = spark.read.csv("src/main/resources/sql/sc.txt")
 

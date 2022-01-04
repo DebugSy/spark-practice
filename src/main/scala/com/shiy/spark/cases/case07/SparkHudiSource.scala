@@ -17,15 +17,15 @@ object SparkHudiSource {
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .getOrCreate()
 
-    val basePath = "file:///tmp/shiy/spark/flink-hudi-sink"
+    val basePath = "hdfs:///tmp/shiy/flink/flink-hudi-sink/2021-04-28--14"
 
     val tripsSnapshotDF = spark.
       read.
       format("hudi").
-      load(basePath + "/*/*")
+      load(basePath + "/*")
     //load(basePath) use "/partitionKey=partitionValue" folder structure for Spark auto partition discovery
     tripsSnapshotDF.createOrReplaceTempView("hudi_trips_snapshot")
-
+    print("总数: " + tripsSnapshotDF.count())
     tripsSnapshotDF.show(false)
   }
 
